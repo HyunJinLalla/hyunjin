@@ -1,0 +1,12 @@
+def Rec_Fun(s):
+    
+    if len(s) <= 1:
+        return s
+    
+    else:
+        return Rec_Fun(s[1:]) + s[0]
+
+if __name__ == '__main__':
+    print(Rec_Fun('ABCDE'))  
+    print(Rec_Fun('Come again, Forever young!'))  
+    print(Rec_Fun('Amore, Roma'))  

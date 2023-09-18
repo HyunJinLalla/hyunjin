@@ -1,0 +1,32 @@
+import re
+
+def extract_emails(text):
+
+    pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,7}\b'
+    
+    emails = re.findall(pattern, text)
+    
+    return emails
+
+def main():
+    
+    text = input("당신의 이메일을 입력하세요: ")
+    
+    extracted_emails = extract_emails(text)
+    
+    if extracted_emails:
+        print("추출된 이메일 주소:")
+        for email in extracted_emails:
+            print(email)
+    else:
+        print("이메일 주소가 발견되지 않았네요 ㅠㅠ.")
+
+if __name__ == "__main__":
+    main()
+
+
+#wedljm@namver.com wedljm@gmail.com wedljm@daum.net 입력시 
+#wedljm@namver.com
+#wedljm@gmail.com
+#wedljm@daum.net 출력되지만 
+#good을 입력시 이메일 주소가 발견되지 않았네요 ㅠㅠ. 출력됩니다

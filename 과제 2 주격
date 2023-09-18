@@ -1,0 +1,38 @@
+def Int_put():
+    try:
+        user_input = input("정수를 입력해주세요 (프로그램을 종료하려면 'done' 입력): ")
+        
+        if user_input.lower() == 'done':
+            return None  # 'done'이 입력되면 종료
+        
+        numbers = [int(num) for num in user_input.split()]
+        
+        if len(numbers) < 2:
+            print("두 개 이상의 정수를 입력하세요.")
+        else:
+            return numbers
+    
+    except ValueError:
+        print("올바르지 않은 입력입니다. 정수를 공백으로 구분하여 입력하세요.")
+
+    return Int_put()  # 재귀 호출을 통해 재시도
+
+def Cal_rec(nums):
+    if not nums:
+        return 0
+    else:
+        return nums[0] + Cal_rec(nums[1:])
+
+def main():
+    while True:
+        numbers = Int_put()  # 정수 입력 받기
+    
+        if numbers is None:
+            print("프로그램을 종료합니다. 안녕히 가세요!")
+            break  # 'done'을 입력하면 루프 종료
+        
+        total_sum = Cal_rec(numbers)  # 합 계산
+        print("입력된 정수들의 총합은:", total_sum)  # 합 출력
+
+if __name__ == "__main__":
+    main()

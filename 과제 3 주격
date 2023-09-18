@@ -1,0 +1,24 @@
+import re
+
+def extract_emails(text):
+    # 이메일 주소 추출을 위한 정규표현식 패턴
+    pattern = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,7}\b'
+    
+    # 정규표현식 패턴을 사용하여 이메일 주소 추출
+    emails = re.findall(pattern, text)
+    return emails
+
+def main():
+    text = input("텍스트를 입력하세요: ")
+    
+    extracted_emails = extract_emails(text)
+    
+    if extracted_emails:
+        print("추출된 이메일 주소:")
+        for email in extracted_emails:
+            print(email)
+    else:
+        print("이메일 주소가 발견되지 않았습니다.")
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,13 @@
+def Rec_Fun(s):
+    # 문자열이 비어있거나 길이가 1인 경우, 그대로 반환
+    if len(s) <= 1:
+        return s
+    else:
+        # 문자열을 뒤집어 반환
+        return Rec_Fun(s[1:]) + s[0]
+
+if __name__ == '__main__':
+    print(Rec_Fun('ABCDE'))  # EDCBA 출력
+    print(Rec_Fun('Come again, Forever young!'))  # !gnuoy yrevoc ,menga emoC 출력
+    print(Rec_Fun('Amore, Roma'))  # amoR ,eromA 출력
+    
