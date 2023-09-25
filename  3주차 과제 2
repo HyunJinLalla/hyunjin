@@ -1,0 +1,45 @@
+class Pet:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+    def __str__(self):
+        return f"{self.name}, {self.age} years old"
+
+class Dog(Pet):
+    def bark(self, n):
+        for _ in range(n):
+            print("bark!")
+
+    def human_age(self):
+        return self.age * 4
+
+class Cat(Pet):
+    def meow(self, n):
+        for _ in range(n):
+            print("meow~")
+
+    def human_age(self):
+        return self.age * 4
+
+
+if __name__ == '__main__':
+    pets = []
+
+    pets.append(Pet('Buddy', 3))
+    pets.append(Dog('Rex', 5))
+    pets.append(Cat('Whiskers', 2))
+
+    for pet in pets:
+        print(pet)
+
+    for pet in pets:
+        if isinstance(pet, Dog):
+            pet.bark(83)
+
+    for pet in pets:
+        if isinstance(pet, Cat):
+            pet.meow(68)
+
+    for pet in pets:
+        print(f"{pet.name} in human years is {pet.human_age()} years old")

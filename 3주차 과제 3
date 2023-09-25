@@ -1,0 +1,52 @@
+class Item:
+    count = 0 
+
+    def __init__(self, Title, price):
+        self.Title = Title
+        self.price = price
+        Item.count += 1 
+
+    def getprice(self):
+        pass 
+    def __str__(self):
+        return f'Title: {self.Title}, 가격: {self.price} 원'
+
+
+class Book(Item):
+    def __init__(self, Title, price, pages, author):
+        super().__init__(Title, price)
+        self.pages = pages
+        self.author = author
+
+    def getprice(self):
+        print(f'* {self.Title}의 가격은 {self.price} 원 이에요.')
+
+    def __str__(self):
+        return f'{super().__str__()}, 페이지 수: {self.pages}, 저자: {self.author}'
+
+
+class Magazine(Item):
+    def __init__(self, Title, price, month):
+        super().__init__(Title, price)
+        self.month = month
+
+    def getprice(self):
+        print(f'* {self.Title}의 가격은 {self.price} 원이랍니다.')
+
+    def __str__(self):
+        return f'{super().__str__()}, 출간 월: {self.month}'
+
+
+if __name__ == '__main__':
+    book1 = Book('rain drop', 10000, 124, 'Mr황')
+    book2 = Book('open flower', 15000, 142, 'Mr이')
+    book3 = Book('nansoball', 12000, 112, 'Miss조')
+    magazine1 = Magazine('bog', 11000, 9)
+    magazine2 = Magazine('single', 13000, 8)
+
+    print(book1, '\n', book2, '\n', book3, '\n', magazine1, '\n', magazine2)
+    print(f'총 {Item.count} 권')
+
+    book2.getprice()
+    magazine1.getprice()
+    book1.getprice()
