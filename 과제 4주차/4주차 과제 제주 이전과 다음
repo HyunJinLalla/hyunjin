@@ -1,0 +1,34 @@
+from tkinter import *
+
+strings = ["jeju1.gif", "jeju2.gif", "jeju3.gif", "jeju4.gif", "jeju5.gif", "jeju6.gif", "jeju7.gif", "jeju8.gif", "jeju9.gif"]
+
+current_index = 0
+
+def previous():
+    global current_index
+    current_index -= 1
+    if current_index < 0:
+        current_index = len(strings) - 1
+    label.config(text=strings[current_index])
+
+def next():
+    global current_index
+    current_index += 1
+    if current_index >= len(strings):
+        current_index = 0
+    label.config(text=strings[current_index])
+
+pokemon = Tk()
+pokemon.title("4주차 과제 이전과 다음")
+pokemon.geometry("380x100")
+pokemon.resizable(width = False, height = False)
+label = Label(pokemon, text=strings[current_index])
+label.pack()
+
+
+previous_button = Button(pokemon, text="P r e v i o u s", command=previous)
+next_button = Button(pokemon, text="N e x t ", command=next)
+previous_button.pack()
+next_button.pack()
+
+pokemon.mainloop()

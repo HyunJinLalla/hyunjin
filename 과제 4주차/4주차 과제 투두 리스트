@@ -1,0 +1,58 @@
+from tkinter import *
+from tkinter import messagebox
+
+# 할 일을 저장할 리스트 생성
+todos = []
+
+def open_add_todo():
+    add_todo_window = Toplevel(window)
+    add_todo_window.title("넣어라 이곳에 너의 할 일을")
+
+    entry = Entry(add_todo_window)
+    entry.pack(pady=10)
+
+    def add_todo():
+        todo = entry.get()
+        if todo:
+            todos.append(todo)
+            update_listbox()
+            entry.delete(0, "end")
+            add_todo_window.destroy()
+
+    add_button = Button(add_todo_window, text="추가하겠나?", command=add_todo)
+    add_button.pack()
+
+# 할 일을 삭제하는 함수
+def delete_todo():
+    try:
+        selected_todo = listbox.curselection()[0]
+        del todos[selected_todo]
+        update_listbox()
+    except IndexError:
+        messagebox.showwarning("위험 위험 위험", "너는 잘못된 접근을 하였다.")
+
+# 할 일 목록 업데이트 함수
+def update_listbox():
+    listbox.delete(0, "end")
+    for todo in todos:
+        listbox.insert("end", todo)
+
+# GUI 생성
+window = Tk()
+window.title("너가 해야할 목록들")
+
+# 입력 텍스트 상자 생성
+entry = Entry(window)
+entry.pack(pady=10)
+
+# 추가 및 삭제 버튼 생성
+add_button = Button(window, text="너의 할 일을 추가해라", command=open_add_todo)
+delete_button = Button(window, text="너의 할 일을 제거해라", command=delete_todo)
+add_button.pack()
+delete_button.pack()
+
+# 할 일 목록을 표시할 리스트 상자 생성
+listbox = Listbox(window)
+listbox.pack()
+
+window.mainloop()

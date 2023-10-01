@@ -1,0 +1,47 @@
+from tkinter import *
+from tkinter import messagebox  
+
+def show_image():
+    selected = selected_animal.get()
+    if selected == "강아지":
+        animal_image_label.configure(image=dog_photo)
+    elif selected == "안드로이드":
+        animal_image_label.configure(image=jellybean_photo)
+    elif selected == "고양이":
+        animal_image_label.configure(image=cat_photo)
+    elif selected == "토끼":
+        animal_image_label.configure(image=rabbit_photo)
+
+def vote():
+    selected = selected_animal.get()
+    if selected:
+        messagebox.showinfo("고른것을 확인해보자 !, ", "당신이 선택한 동물은 {selected}이였네.")
+
+window = Tk()
+window.resizable(width=False, height=False)
+window.geometry("400x400")
+window.title("Favorite Animal Voting")
+
+dog_photo = PhotoImage(file="/Users/pingpongpongdang/Downloads/jpeg파일/dog.gif")
+jellybean_photo = PhotoImage(file="/Users/pingpongpongdang/Downloads/jpeg파일/jellybean.gif")
+cat_photo = PhotoImage(file="/Users/pingpongpongdang/Downloads/jpeg파일/cat.gif")
+rabbit_photo = PhotoImage(file="/Users/pingpongpongdang/Downloads/jpeg파일/rabbit.gif")
+
+selected_animal = StringVar()
+dog_button = Radiobutton(window, text="강아지", variable=selected_animal, value="강아지")
+jellybean_button = Radiobutton(window, text="안드로이드", variable=selected_animal, value="안드로이드")
+cat_button = Radiobutton(window, text="고양이", variable=selected_animal, value="고양이")
+rabbit_button = Radiobutton(window, text="토끼", variable=selected_animal, value="토끼")
+
+animal_image_label = Label(window, image=dog_photo)
+
+vote_button = Button(window, text="어떻게 생겼는지 확인하기", command=show_image)
+
+dog_button.pack()
+jellybean_button.pack()
+cat_button.pack()
+rabbit_button.pack()
+animal_image_label.pack()
+vote_button.pack()
+
+window.mainloop()
